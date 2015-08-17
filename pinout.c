@@ -22,26 +22,91 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
+#include "pinout.h"
 
-#include <msp430.h> 
-#include <system.h>
+void ButtonsSetup(void){
 
-#include "system.h"
-
-void ClockSetup(){
 
 }
 
-/*
- * main.c
- */
-int main(void) {
-    WDTCTL = WDTPW | WDTHOLD;	// Stop watchdog timer
-	
-    while(1){
 
-    	SystemCheck();//every 0.1 s
 
-    }//while (1)
-	return 0;
+char  ButtonsRead(char button){
+	char status = NONE;
+
+
+	return status;
+}
+
+char ButtonAutoRead(void){
+	char status = NONE;
+
+
+	return status;
+}
+
+char ButtonStartRead(void){
+	char status = NONE;
+
+
+	return status;
+}
+
+char ButtonStopRead(void){
+	char status = NONE;
+
+
+	return status;
+}
+
+char ButtonHSpeedRead(void){
+	char status = NONE;
+
+
+	return status;
+}
+
+
+void ElevatorSetup(void){
+
+
+}
+
+char ElevatorRead(void){//OFF or ON
+	char status = OFF;
+
+
+	return status;
+}
+
+void ElevatorWrite(char state){// OFF or ON
+
+
+}
+
+void TonarmSetup(void){
+
+
+}
+
+char TonarmRead(void){
+char state = OFF;
+
+return state;
+}
+
+void TonarmWrite(char state){// OFF or ON
+
+
+}
+
+void StopSensorSetup(void){
+
+
+}
+
+char StopSensorRead(void){//NONE or STOP
+	char state = NONE;
+
+	return state;
 }

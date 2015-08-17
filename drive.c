@@ -22,26 +22,31 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
+#include "drive.h"
 
-#include <msp430.h> 
-#include <system.h>
-
-#include "system.h"
-
-void ClockSetup(){
+void DriveSetup(void){
 
 }
 
-/*
- * main.c
- */
-int main(void) {
-    WDTCTL = WDTPW | WDTHOLD;	// Stop watchdog timer
-	
-    while(1){
+void TimerSetup(void){
 
-    	SystemCheck();//every 0.1 s
 
-    }//while (1)
-	return 0;
+}
+
+void DriveSensorSetup(void){
+
+
+}
+
+void DriveStart(char speed){
+
+
+}
+
+void DriveSpeed(char speed){
+
+}
+
+void DriveStop(void){
+
 }

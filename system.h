@@ -23,25 +23,26 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVE
 IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <msp430.h> 
-#include <system.h>
+#ifndef SYSTEM_H_
+#define SYSTEM_H_
 
-#include "system.h"
+#include "pinout.h"
 
-void ClockSetup(){
+#include "definitions.h"
 
-}
+#include  "drive.h"
 
-/*
- * main.c
- */
-int main(void) {
-    WDTCTL = WDTPW | WDTHOLD;	// Stop watchdog timer
-	
-    while(1){
+	void SystemStopToRun(void);
 
-    	SystemCheck();//every 0.1 s
+	void SystemRunToStop(void);
 
-    }//while (1)
-	return 0;
-}
+	void SystemChangeSpeed(char speed);
+
+	char SystemReadState(void);
+
+	char SystemWriteState(char);
+
+	char SystemCheck(void);
+
+
+#endif /* SYSTEM_H_ */

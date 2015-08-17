@@ -23,25 +23,22 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVE
 IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <msp430.h> 
-#include <system.h>
+#ifndef DRIVE_H_
+#define DRIVE_H_
 
-#include "system.h"
+#include "pinout.h"
+#include "definitions.h"
 
-void ClockSetup(){
+void DriveSetup(void);
 
-}
+void TimerSetup(void);
 
-/*
- * main.c
- */
-int main(void) {
-    WDTCTL = WDTPW | WDTHOLD;	// Stop watchdog timer
-	
-    while(1){
+void DriveSensorSetup(void);
 
-    	SystemCheck();//every 0.1 s
+void DriveStart(char speed);
 
-    }//while (1)
-	return 0;
-}
+void DriveSpeed(char speed);
+
+void DriveStop(void);
+
+#endif /* DRIVE_H_ */

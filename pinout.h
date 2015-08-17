@@ -23,25 +23,39 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVE
 IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <msp430.h> 
-#include <system.h>
+#ifndef PINOUT_H_
+#define PINOUT_H_
 
-#include "system.h"
+#include <stdint.h>
 
-void ClockSetup(){
+#include <definitions.h>
 
-}
+void ButtonsSetup(void);
 
-/*
- * main.c
- */
-int main(void) {
-    WDTCTL = WDTPW | WDTHOLD;	// Stop watchdog timer
-	
-    while(1){
+char ButtonsRead(char button);
 
-    	SystemCheck();//every 0.1 s
+char ButtonAutoRead(void);
 
-    }//while (1)
-	return 0;
-}
+char ButtonStartRead(void);
+
+char ButtonStopRead(void);
+
+char ButtonHSpeedRead(void);
+
+void ElevatorSetup(void);
+
+char ElevatorRead(void);
+
+void ElevatorWrite(char state);
+
+void TonarmSetup(void);
+
+char TonarmRead(void);
+
+void TonarmWrite(char state);
+
+void SensorsSetup(void);
+
+char StopSensorRead(void);
+
+#endif /* PINOUT_H_ */

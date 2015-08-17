@@ -23,25 +23,24 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVE
 IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <msp430.h> 
-#include <system.h>
+#ifndef DEFINITIONS_H_
+#define DEFINITIONS_H_
 
-#include "system.h"
 
-void ClockSetup(){
+//tonarm and elevator definition
 
-}
+enum {OFF,ON};
 
-/*
- * main.c
- */
-int main(void) {
-    WDTCTL = WDTPW | WDTHOLD;	// Stop watchdog timer
-	
-    while(1){
+//buttons and fsm commands definitions
 
-    	SystemCheck();//every 0.1 s
+enum button {NONE, STOP, START, AUTO, HSPEED};
 
-    }//while (1)
-	return 0;
-}
+//speed definitions
+
+enum speed {SPEED33, SPEED45};
+
+//fsm states
+
+enum fsm {STOPPED, RUN33, RUN45};
+
+#endif /* DEFINITIONS_H_ */
