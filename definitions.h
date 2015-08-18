@@ -27,6 +27,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define DEFINITIONS_H_
 
 
+enum {LOW, HIGH};
 //tonarm and elevator definition
 
 enum {OFF,ON};

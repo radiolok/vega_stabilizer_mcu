@@ -24,23 +24,31 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 #include "pinout.h"
 
+
 void ButtonsSetup(void){
 
+	//AutoStop select
+	P1DIR &= ~(BIT6);
+
+	//Speed33 select
+	P1DIR &= ~(BIT7);
+
+	//Start select
+	P2DIR &= ~(BIT5);
+
+	//Stop select
+	P2DIR &= ~(BIT4);
+
 
 }
 
-
-
-char  ButtonsRead(char button){
-	char status = NONE;
-
-
-	return status;
-}
 
 char ButtonAutoRead(void){
 	char status = NONE;
 
+	if (0 == (P1IN & BIT6)){
+		status = AUTO;
+	}
 
 	return status;
 }
@@ -48,12 +56,19 @@ char ButtonAutoRead(void){
 char ButtonStartRead(void){
 	char status = NONE;
 
+	if (0 == (P2IN & BIT5)){
+		status = START;
+	}
 
 	return status;
 }
 
 char ButtonStopRead(void){
 	char status = NONE;
+
+	if (0 == (P2IN & BIT4)){
+		status = STOP;
+	}
 
 
 	return status;
@@ -62,6 +77,9 @@ char ButtonStopRead(void){
 char ButtonHSpeedRead(void){
 	char status = NONE;
 
+	if (1 == (P1IN & BIT7)){
+		status = HSPEED;
+	}
 
 	return status;
 }
@@ -69,44 +87,63 @@ char ButtonHSpeedRead(void){
 
 void ElevatorSetup(void){
 
+	//output
+	P2DIR |= (BIT3);
 
 }
 
 char ElevatorRead(void){//OFF or ON
 	char status = OFF;
-
-
+	if (P2IN & BIT3){
+		status = ON;
+	}
 	return status;
 }
 
-void ElevatorWrite(char state){// OFF or ON
-
-
+void ElevatorWrite(char status){// OFF or ON
+	if (ON == status){
+		P2OUT |= (BIT3);
+	}
+	else{
+		P2OUT &= ~(BIT3);
+	}
 }
 
 void TonarmSetup(void){
 
+	P2DIR |= (BIT1);
+	TonarmWrite(OFF);
 
 }
 
 char TonarmRead(void){
-char state = OFF;
-
-return state;
+	char status = OFF;
+	if (P2IN & BIT1){
+		status = ON;
+	}
+	return status;
 }
 
-void TonarmWrite(char state){// OFF or ON
-
+void TonarmWrite(char status){// OFF or ON
+	if (OFF == status){
+		P2OUT |= (BIT3);//we need to open trans to turn off
+	}
+	else{
+		P2OUT &= ~(BIT3);
+	}
 
 }
 
 void StopSensorSetup(void){
 
+	P2DIR &= ~(BIT2);
 
 }
 
 char StopSensorRead(void){//NONE or STOP
-	char state = NONE;
-
-	return state;
+	char status = LOW;
+	if (P2IN & BIT2){
+		status = HIGH;
+	}
+	return status;
 }

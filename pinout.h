@@ -30,9 +30,9 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <definitions.h>
 
-void ButtonsSetup(void);
+#include <msp430g2553.h>
 
-char ButtonsRead(char button);
+void ButtonsSetup(void);
 
 char ButtonAutoRead(void);
 
@@ -46,13 +46,13 @@ void ElevatorSetup(void);
 
 char ElevatorRead(void);
 
-void ElevatorWrite(char state);
+void ElevatorWrite(char status);
 
 void TonarmSetup(void);
 
 char TonarmRead(void);
 
-void TonarmWrite(char state);
+void TonarmWrite(char status);
 
 void SensorsSetup(void);
 
