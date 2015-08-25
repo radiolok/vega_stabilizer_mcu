@@ -54,7 +54,7 @@ char TonarmRead(void);
 
 void TonarmWrite(char status);
 
-void SensorsSetup(void);
+void StopSensorSetup(void);
 
 char StopSensorRead(void);
 

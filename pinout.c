@@ -28,7 +28,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 void ButtonsSetup(void){
 
 	//AutoStop select
-	P1DIR &= ~(BIT6);
+	P1DIR &= ~(BIT5);
 
 	//Speed33 select
 	P1DIR &= ~(BIT7);
@@ -46,7 +46,7 @@ void ButtonsSetup(void){
 char ButtonAutoRead(void){
 	char status = NONE;
 
-	if (0 == (P1IN & BIT6)){
+	if (0 == (P1IN & BIT5)){
 		status = AUTO;
 	}
 
