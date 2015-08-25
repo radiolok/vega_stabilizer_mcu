@@ -53,7 +53,7 @@ void DriveSetup(void){
 void TimerSetup(void){
 	//PWM timer:
 	TA0CTL |= TASSEL1 | MC0 | TAIE;//SMLCK as source, Up mode to TACCR0
-	TA0CCTL1 |= OUTMOD2 | OUTMOD1 | OUTMOD0;// Reset/Set mode
+	TA0CCTL1 |= OUTMOD2 | OUTMOD1 | OUTMOD0 |CCIE;;// Reset/Set mode
 	TA0CTL |= TACLR;//clear TAR
 	TA0CCR0 = TA0CCR0MAX;
 	//Sensor timer:
@@ -130,6 +130,7 @@ void __attribute__ ((interrupt(TIMER1_A1_VECTOR))) Timer_A_OVF (void)
 		CorrectSpeed();
 	}
 }
+
 
 
 

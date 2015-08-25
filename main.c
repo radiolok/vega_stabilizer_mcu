@@ -29,6 +29,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "system.h"
 #include "pinout.h"
 
+#define abs(x) ((x)>0?(x):-(x))
+
 void ClockSetup(){
 	//sensor crystal clock ACLK
 	BCSCTL1 |= XTS;// High-frequency XT1 clock
@@ -42,10 +44,15 @@ void ClockSetup(){
 
 void SystemSetup(){
 	ClockSetup();
+
 	ButtonsSetup();
+
 	ElevatorSetup();
+
 	TonarmSetup();
+
 	StopSensorSetup();
+
 	DriveSetup();
 }
 /*
@@ -53,10 +60,17 @@ void SystemSetup(){
  */
 int main(void) {
     WDTCTL = WDTPW | WDTHOLD;	// Stop watchdog timer
-	
+    SystemSetup();
+	long previoustime = 0;
+	long currenttime = 0;
     while(1){
+    	currenttime = Millis();
+    	if (100 > abs(currenttime - previoustime)){
+    		//every 100ms;
+    		SystemCheck();//every 0.1 s
+    		previoustime = currenttime;
+    	}
 
-    	SystemCheck();//every 0.1 s
 
     }//while (1)
 	return 0;

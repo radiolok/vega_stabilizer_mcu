@@ -26,6 +26,9 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 char systemstate;
 
+long millis = 0;
+short micros = 0;
+
 
 void SystemStopToRun(void){
 	//start motion
@@ -118,4 +121,19 @@ char SystemCheck(void){
 	    		break;
 	    	}
 	return systemstate;
+}
+
+long Millis(){
+	return millis;
+}
+
+
+// Timer A1 OVF service routine
+void __attribute__ ((interrupt(TIMER0_A1_VECTOR))) Timer_A_TIME (void)
+{
+	micros +=50;//
+	if (micros >= 1000){
+		micros = 0;
+		millis++;
+	}
 }

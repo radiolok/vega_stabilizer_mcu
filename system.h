@@ -44,5 +44,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	char SystemCheck(void);
 
+	long Millis(void);
+
 
 #endif /* SYSTEM_H_ */
