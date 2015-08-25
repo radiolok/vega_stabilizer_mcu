@@ -27,11 +27,27 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <system.h>
 
 #include "system.h"
+#include "pinout.h"
 
 void ClockSetup(){
+	//sensor crystal clock ACLK
+	BCSCTL1 |= XTS;// High-frequency XT1 clock
+	BCSCTL2 |= SELM1 | SELM0 ;//LFXT source for MCLK
+	BCSCTL3 |= LFXT1S1 ;//4MHz crystal
 
+	//PWM DCO clock - SMCLK
+	DCOCTL = DCO2 | DCO1 | DCO0 ;
+	BCSCTL1 |= RSEL3 | RSEL2 | RSEL1 | RSEL0;
 }
 
+void SystemSetup(){
+	ClockSetup();
+	ButtonsSetup();
+	ElevatorSetup();
+	TonarmSetup();
+	StopSensorSetup();
+	DriveSetup();
+}
 /*
  * main.c
  */

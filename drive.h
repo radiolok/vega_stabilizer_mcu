@@ -29,6 +29,16 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "pinout.h"
 #include "definitions.h"
 
+//maximum value of compare register
+#define TA0CCR0MAX 800
+#define TA0MAX (TA0CCR0MAX - 10)
+
+#define SPEED33REG 50000
+
+#define SPEED45REG 37037
+
+#define SENSORPERIODMAX 65535
+
 void DriveSetup(void);
 
 void TimerSetup(void);
@@ -40,5 +50,7 @@ void DriveStart(char speed);
 void DriveSpeed(char speed);
 
 void DriveStop(void);
+
+void CorrectSpeed(void);
 
 #endif /* DRIVE_H_ */
