@@ -33,9 +33,9 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define TA0CCR0MAX 800
 #define TA0MAX (TA0CCR0MAX - 10)
 
-#define SPEED33REG 50000
+#define SPEED33REG 50000//target period for 33,1/3 speed
 
-#define SPEED45REG 37037
+#define SPEED45REG 37037//target period for 45 speed
 
 #define SENSORPERIODMAX 65535
 

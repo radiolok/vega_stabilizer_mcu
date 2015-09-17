@@ -99,24 +99,28 @@ void DriveStop(void){
 
 void CorrectSpeed(void){
 	//called only if drivework is ON
+	//if current period is greather then target, we need to increase disk speed, error > 0
+	//if current period is lesses then target, we need to decrease disk speed, error < 0
 	currenterror = currentperiod - targetperiod;
-	integralspeed += (float)(currenterror);
+	integralspeed += (float)(currenterror);//Integral variable
+	//PID controller.
 	float  drivespeedtemp = KP * currenterror* (t_timer * currentperiod) + KI * integralspeed + KD * (currenterror - lasterror)/  (t_timer * currentperiod);
-	if (drivespeedtemp > TA0MAX){
+	if (drivespeedtemp > (float)(TA0MAX)){//limit maximum value
 		drivespeedtemp = (float)(TA0MAX);
 	}
-	if (drivespeedtemp < 5){
+	if (drivespeedtemp < (float)(5)){//limit minimum value
 		drivespeedtemp = (float)(5);
 	}
 	drivespeed = (short)(drivespeedtemp);
 	TA1CCR1 = drivespeed;
-	lasterror = currenterror;
+	lasterror = currenterror;//remember old value for differential part
 }
 
 // Timer A1 CCI service routine
 void __attribute__ ((interrupt(TIMER1_A0_VECTOR))) Timer_A_CCI (void)
 {
 	if (ON == drivework){
+		//we have signal from our sensor. Calculate period
 		currentperiod = TA1CCR0;
 		CorrectSpeed();
 	}
@@ -126,6 +130,8 @@ void __attribute__ ((interrupt(TIMER1_A0_VECTOR))) Timer_A_CCI (void)
 void __attribute__ ((interrupt(TIMER1_A1_VECTOR))) Timer_A_OVF (void)
 {
 	if (ON == drivework){
+		//this OVF interrupt is handled if motor speed is too low.
+		//So we control maximum acceleration level
 		currentperiod = SENSORPERIODMAX;
 		CorrectSpeed();
 	}
